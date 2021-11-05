@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PhuongPhapDayCung
+{
+    class Program
+    {
+        public static float f(float x)
+        {
+            return x * x * x * x - 3 * x + 1;
+        }
+        static void Main(string[] args)
+        {
+            //TA TÍNH ĐƯỢC KHOẢNG NGHIỆM A=0;B=1
+            Console.OutputEncoding = Encoding.UTF8;
+            float ep, x, a, b, fa, fb, dx; //ep : Sai số
+            Console.WriteLine("Nhap khoang phan ly nghiem : ");
+            Console.WriteLine("Nhap a = ");
+            a = float.Parse(Console.ReadLine());
+            Console.WriteLine("Nhap b = ");
+            b = float.Parse(Console.ReadLine());
+            //Nhập sai số
+            Console.WriteLine("Nhap sai so  e = ");
+            ep = float.Parse(Console.ReadLine());
+            fa = f(a);
+            fb = f(b);
+            dx = fa * (b - a) / (fa - fb);
+            do
+            {
+                x = a + dx;
+                fa = f(x);
+                if ((fa * fb) <= 0)
+                    a = x;
+                else
+                    b = x;
+                fa = f(a);
+                fb = f(b);
+                dx = fa * (b - a) / (fa - fb);
+
+            } while (Math.Abs(dx) > ep);
+            Console.WriteLine("Nghiem gan dung cua phuong trinh la =" + x);
+            Console.ReadLine();
+        }
+    }
+}
